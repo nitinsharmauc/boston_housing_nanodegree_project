@@ -13443,7 +13443,9 @@ Standard deviation of prices: $165171.13154429474
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong>
-Yes the r2 score is 0.923, i.e. 92.3% of variance in dependentt variable is predictable from independent variable.</p>
+Yes the r2 score is 0.923, i.e. 92.3% of variance in dependent variable is predictable from independent variable.
+R2 score is 1 minus the ratio of the mean squared error for the model to the one for the simplest model. Thus if the R2 score is close to 0 that means the MSE for the model is close to the simplest model, hence proving that it is not a good fit.
+On the other hand if the R2 score is close to 1, that means the MSE for the model is far less than that of the simplest model, hence it's a good model.</p>
 
 </div>
 </div>
@@ -13688,7 +13690,9 @@ Think about the pros and cons of adding more training points based on if the tra
 <ul>
 <li>The graph with Max depth 3 is best. </li>
 <li>For the max depth 3, as more training points are added the curve dips but the flattens, for testing points score increases and then flattens and converges with the training set graph.</li>
-<li>Adding more points beyond the threshold value will not help as the score then doesn;t vary much.</li>
+<li>For the max depth 1, both training &amp; testing curve remains low around ~0.4 score, i.e. it's high biased model and doesn't perform well for training as well as testing set.</li>
+<li>For the max depth 10, Training score remains high, but the testing score rises but converges to score slightly more than   0.5. Thus this model overfits and doesn't predict well on new data.</li>
+<li>Adding more points beyond the threshold value will not help as the score then doesn't vary much.</li>
 </ul>
 
 </div>
@@ -13812,7 +13816,10 @@ Think about the pros and cons of adding more training points based on if the tra
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer: </strong></p>
 <ul>
-<li>Grid search is a technique to find right the hyperparamater for a particular set of a data. The hyperparameter cannot be found from the data alone and we need to train the model with varying values of hyperparameter to find the best one. For example in the case of SVM the parameter c or depth in case of decision tree.</li>
+<li>Grid search is a technique to find right the hyperparameter for a particular set of a data. The hyperparameter cannot be found from the data alone and we need to train the model with varying values of hyperparameter to find the best one. For example in the case of SVM the parameter c or depth in case of decision tree.</li>
+<li>In grid search, we train the model based on all the combinations of the hyperparameters and then use cross validation data to pick the best model. Finally we validate the selected model by the testing data.</li>
+<li>As an example, in case of desicion tree, the depth is the hyperparameter and we train the model for say depth 1, 2, 3 and 4. Similarly in case of SVM the hyperparameters are the kernel and the gamma (c). </li>
+<li>As it's clear that finding all combinations &amp; then training &amp; testing models for them manually is inefficient. Grid search makes this task automated, and we have to just provide the right data &amp; parameters.</li>
 </ul>
 
 </div>
@@ -13839,7 +13846,9 @@ Think about the pros and cons of adding more training points based on if the tra
 <p><strong>Answer: </strong></p>
 <ul>
 <li>The k-fold technique involves splitting the data-set into k distinct buckets and use one set as testing &amp; others as training sets. The process is repeated k times by choosing a different bucket from the k-buckets.</li>
-<li>By randomly splitting the data and choosing different testing sets, we can arrive at a more generised model. In case we use only one time split data it might give a skewed result based on the data in testing &amp; training sets.</li>
+<li>If we split the data into the training, validation &amp; test set, then we might end up with very less data to train. The K-fold technique helps by having one test set &amp; the rest of data is split into k sets from which we choose one as validation set and train on the k-1 sets.</li>
+<li>By randomly splitting the data and choosing different cross-validation sets, we can arrive at a more generised model. In case we use only one time split data it might give a skewed result based on the data in testing &amp; training sets.</li>
+<li>Only drawback with k-fold is that running grid search for each iteration can be computaionally expensive.</li>
 </ul>
 
 </div>
@@ -14067,14 +14076,15 @@ Predicted selling price for Client 3&#39;s home: $931,636.36
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer: </strong></p>
 <ul>
-<li><p>Predicted selling price for Client 1's home: $403,025.00</p>
+<li><p>Predicted selling price for Client 1's home: $403,025.00.</p>
 </li>
 <li><p>Predicted selling price for Client 2's home: $237,478.72</p>
 </li>
 <li><p>Predicted selling price for Client 3's home: $931,636.36</p>
 </li>
 </ul>
-<p>The values predicted seem reasonable and the order is highest rate for client 3 then 1 &amp; then 2, which is quite as we'd guess based on the features.</p>
+<p>The price for the 3rd client is the highest. This is he has the highest no. of rooms (8) and the neighborhood poverty level is least. The number of teachers per student also is high. All these factors, large house, in posh locality, with highest education facilities make it the costliest among the 3 clients. 
+In similar terms, the 2nd client has smaller house, poorer neighborhood with high student to teacher ratio, making it the cheapest among the three.</p>
 
 </div>
 </div>
